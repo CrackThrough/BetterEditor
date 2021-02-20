@@ -1,0 +1,13 @@
+{
+  "Id": "BetterEditor",
+  "DisplayName": "<size=14><b> Editor+ Mod |</b> <i>The editor utility mod</i></size> (in dev)",
+  "Author": "",
+  "Version": "0.0.1",
+  "ManagerVersion": "0.22.14.0",
+  "AssemblyName": "BetterEditor.dll",
+  "EntryMethod": "BetterEditor.Startup.Load",
+  "dataArchived": {
+	"HomePage": "https://github.com/PizzaLovers007/AdofaiTweaks",
+	"Repository": "https://raw.githubusercontent.com/PizzaLovers007/AdofaiTweaks/master/Repository.json"
+  }
+}
