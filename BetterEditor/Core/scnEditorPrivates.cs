@@ -70,6 +70,11 @@ namespace BetterEditor.Core
             return null;
         }
 
+        public static T InvokeMethod<T>(string methodName, object[] parameter = null)
+        {
+            return (T) (InvokeMethod(methodName, parameter) ?? default);
+        }
+
         public static object GetProperty(string propertyName, object[] parameter = null)
         {
             if (properties.ContainsKey(propertyName))
@@ -78,6 +83,11 @@ namespace BetterEditor.Core
             }
 
             return null;
+        }
+
+        public static T GetProperty<T>(string propertyName, object[] parameter = null)
+        {
+            return (T) (GetProperty(propertyName, parameter) ?? default);
         }
 
         public static void SetProperty(string propertyName, object[] parameter)
@@ -96,6 +106,11 @@ namespace BetterEditor.Core
             }
 
             return null;
+        }
+
+        public static T GetField<T>(string fieldName)
+        {
+            return (T) (GetField(fieldName) ?? default);
         }
 
         public static void SetField(string fieldName, object value)
