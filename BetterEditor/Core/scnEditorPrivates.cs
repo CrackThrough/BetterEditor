@@ -72,7 +72,7 @@ namespace BetterEditor.Core
 
         public static T InvokeMethod<T>(string methodName, object[] parameter = null)
         {
-            return (T) (InvokeMethod(methodName, parameter) ?? default);
+            return (T) (InvokeMethod(methodName, parameter) ?? default(T));
         }
 
         public static object GetProperty(string propertyName, object[] parameter = null)
@@ -87,7 +87,7 @@ namespace BetterEditor.Core
 
         public static T GetProperty<T>(string propertyName, object[] parameter = null)
         {
-            return (T) (GetProperty(propertyName, parameter) ?? default);
+            return (T) (GetProperty(propertyName, parameter) ?? default(T));
         }
 
         public static void SetProperty(string propertyName, object[] parameter)
@@ -110,7 +110,7 @@ namespace BetterEditor.Core
 
         public static T GetField<T>(string fieldName)
         {
-            return (T) (GetField(fieldName) ?? default);
+            return (T) (GetField(fieldName) ?? default(T));
         }
 
         public static void SetField(string fieldName, object value)
@@ -119,6 +119,21 @@ namespace BetterEditor.Core
             {
                 fields[fieldName].SetValue(instance, value);
             }
+        }
+
+        struct TestStruct
+        {
+            int x, y;
+        }
+
+        public static void Testing()
+        {
+            // yeah this would probably return null? or throw an exception because of the null
+            // then we can try doing GetStructField<TestStruct>("asdf") and see if it makes a difference
+            // ah i didn't put it anywhere, i was just checking if it would compile
+            // let's move it to BetterEditor.Init()
+            TestStruct ts = GetField<TestStruct>("asdf");
+            BetterEditor.Logger.Log(ts.ToString()); // this? did you put Testing() on Startup or BetterEditor.Init() ? do I need to compile and run this? it should compile though
         }
     }
 }

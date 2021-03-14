@@ -27,6 +27,9 @@ namespace BetterEditor
         {
             Logger = entry.Logger;
 
+            scnEditorPrivates.Testing();
+            return;
+
             SettingsDirectory = Path.Combine(entry.Path, @"ModSettings\");
 
             if (!Directory.Exists(SettingsDirectory))
