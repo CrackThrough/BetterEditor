@@ -1,5 +1,5 @@
 const fs = require("fs");
-const VERSION = process.argv[2].slice().splice(2).join(" ");
+const VERSION = process.argv.slice().splice(2).join(" ");
 
 ["./Repository.json", "./Info.json"].forEach((filename, index) => {
     var data = require(filename);
@@ -12,5 +12,5 @@ const VERSION = process.argv[2].slice().splice(2).join(" ");
             data.Version = VERSION;
             break;
     }
-    fs.writeFileSync(filename, JSON.stringify(info, (k, v) => v, 4 / (index + 1)));
+    fs.writeFileSync(filename, JSON.stringify(data, (k, v) => v, 4 / (index + 1)));
 });
