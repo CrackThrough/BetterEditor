@@ -341,3 +341,7 @@ healthchecksdb
 
 *.cmd
 tmp/
+*.dll
+BetterEditor/bin/
+BetterEditor/obj/
+*.zip

@@ -1,9 +1,9 @@
 {
-	"Releases": [
-		{
-			"Id": "BetterEditor",
-			"Version": "0.0.1",
-			"DownloadUrl": "https://github.com/CrackThrough/BetterEditor/releases/download/v0.0.1/BetterEditor-0.0.1.zip"
-		}
-	]
+    "Releases": [
+        {
+            "Id": "BetterEditor",
+            "Version": "0.0.1",
+            "DownloadUrl": "https://github.com/CrackThrough/BetterEditor/releases/download/v0.0.1/BetterEditor-0.0.1.zip"
+        }
+    ]
 }

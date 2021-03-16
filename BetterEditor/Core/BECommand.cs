@@ -6,8 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static UnityModManagerNet.UnityModManager.ModEntry;
 
-namespace BetterEditor.Core //더 나은 에디터의 핵심
+namespace BetterEditor.Core
 {
     public class BECommand
     {
@@ -15,6 +16,8 @@ namespace BetterEditor.Core //더 나은 에디터의 핵심
         {
 
         }
+
+        public static ModLogger Logger { get; set; }
 
         public virtual void Execute(scnEditor instance, string[] args) {
             throw new NotImplementedException("You should override [public void BECommand.Execute()] in order to make the command work.");
@@ -40,6 +43,7 @@ namespace BetterEditor.Core //더 나은 에디터의 핵심
              * string
              * float
              * double
+             * bool
              */
             var s = str.Trim();
 
@@ -69,6 +73,8 @@ namespace BetterEditor.Core //더 나은 에디터의 핵심
                 else if (int.TryParse(s, out int ri)) return ri;
             }
 
+            if ((new string[] { "true", "false" }).Contains(str.ToLower())) return str.Equals("true");
+
             return str;
         }
 
@@ -95,6 +101,8 @@ namespace BetterEditor.Core //더 나은 에디터의 핵심
 
         public static void Setup()
         {
+            Logger = BetterEditor.Logger;
+
             StoredCommands.Clear();
             IEnumerable<Type> CommandTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttribute<CommandInfo>() != null);
 
