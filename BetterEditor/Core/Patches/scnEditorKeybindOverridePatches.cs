@@ -43,17 +43,7 @@ namespace BetterEditor.Core.Patches
 
 			__instance.gameCanvas.enabled = (bool) scnEditorPrivates.GetProperty("playMode");
 
-			object temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-			List<scrFloor> temporaryFloors;
-			
-			if (temporaryFloorsObj == null)
-            {
-				temporaryFloors = null;
-            }
-			else
-            {
-				temporaryFloors = (List<scrFloor>) temporaryFloorsObj;
-            }
+			List<scrFloor> temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 			__instance.playPause.interactable = temporaryFloors.Count() != 1;
 
@@ -106,7 +96,6 @@ namespace BetterEditor.Core.Patches
 			bool flag3 = flag || flag2;
 			bool flag4 = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
 
-			object temporaryFloorObj;
 			scrFloor temporaryFloor;
 
 			if (!(bool) scnEditorPrivates.GetProperty("userIsEditingAnInputField") && !(bool) scnEditorPrivates.GetField("showingPopup"))
@@ -147,16 +136,7 @@ namespace BetterEditor.Core.Patches
 					}
 					else if (Input.GetKeyDown(KeyCode.End))
 					{
-						temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-						if (temporaryFloorsObj == null)
-						{
-							temporaryFloors = null;
-						}
-						else
-						{
-							temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-						}
+						temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 						scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 							temporaryFloors[
@@ -173,16 +153,7 @@ namespace BetterEditor.Core.Patches
 					{
 						if (Input.GetKeyDown(KeyCode.LeftArrow))
 						{
-							temporaryFloorObj = scnEditorPrivates.InvokeMethod("PreviousFloor", new object[] { __instance.selectedFloor });
-
-							if (temporaryFloorObj == null)
-							{
-								temporaryFloor = null;
-							}
-							else
-							{
-								temporaryFloor = (scrFloor)temporaryFloorObj;
-							}
+							temporaryFloor = scnEditorPrivates.InvokeMethod<scrFloor>("PreviousFloor", new object[] { __instance.selectedFloor });
 
 							scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 								temporaryFloor,
@@ -191,16 +162,7 @@ namespace BetterEditor.Core.Patches
 						}
 						else if (Input.GetKeyDown(KeyCode.RightArrow))
 						{
-							temporaryFloorObj = scnEditorPrivates.InvokeMethod("NextFloor", new object[] { __instance.selectedFloor });
-
-							if (temporaryFloorObj == null)
-							{
-								temporaryFloor = null;
-							}
-							else
-							{
-								temporaryFloor = (scrFloor)temporaryFloorObj;
-							}
+							temporaryFloor = scnEditorPrivates.InvokeMethod<scrFloor>("NextFloor", new object[] { __instance.selectedFloor });
 
 							scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 								temporaryFloor,
@@ -212,16 +174,7 @@ namespace BetterEditor.Core.Patches
 							int seqID = __instance.selectedFloor.seqID;
 							if ((bool)scnEditorPrivates.InvokeMethod("DeleteFloor", new object[] { seqID, true }))
 							{
-								temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-								if (temporaryFloorsObj == null)
-								{
-									temporaryFloors = null;
-								}
-								else
-								{
-									temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-								}
+								temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 								scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 									temporaryFloors[seqID - 1],
@@ -234,16 +187,7 @@ namespace BetterEditor.Core.Patches
 							int seqID2 = __instance.selectedFloor.seqID;
 							if ((bool)scnEditorPrivates.InvokeMethod("DeleteFloor", new object[] { seqID2 + 1, true }))
 							{
-								temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-								if (temporaryFloorsObj == null)
-								{
-									temporaryFloors = null;
-								}
-								else
-								{
-									temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-								}
+								temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 								scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 									temporaryFloors[seqID2],
@@ -381,16 +325,7 @@ namespace BetterEditor.Core.Patches
 					{
 						if (Input.GetKeyDown(KeyCode.LeftArrow))
 						{
-							temporaryFloorObj = scnEditorPrivates.InvokeMethod("PreviousFloor", new object[] { __instance.multiSelectedFloors.First() });
-
-							if (temporaryFloorObj == null)
-							{
-								temporaryFloor = null;
-							}
-							else
-							{
-								temporaryFloor = (scrFloor)temporaryFloorObj;
-							}
+							temporaryFloor = scnEditorPrivates.InvokeMethod<scrFloor>("PreviousFloor", new object[] { __instance.multiSelectedFloors.First() });
 
 							scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 								temporaryFloor,
@@ -399,16 +334,7 @@ namespace BetterEditor.Core.Patches
 						}
 						if (Input.GetKeyDown(KeyCode.RightArrow))
 						{
-							temporaryFloorObj = scnEditorPrivates.InvokeMethod("NextFloor", new object[] { __instance.multiSelectedFloors.Last() });
-
-							if (temporaryFloorObj == null)
-							{
-								temporaryFloor = null;
-							}
-							else
-							{
-								temporaryFloor = (scrFloor)temporaryFloorObj;
-							}
+							temporaryFloor = scnEditorPrivates.InvokeMethod<scrFloor>("NextFloor", new object[] { __instance.multiSelectedFloors.Last() });
 
 							scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 								temporaryFloor,
@@ -482,16 +408,7 @@ namespace BetterEditor.Core.Patches
 						}
 						else if (Input.GetKeyDown(KeyCode.LeftArrow)) // multi-selection
 						{
-							temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-							if (temporaryFloorsObj == null)
-							{
-								temporaryFloors = null;
-							}
-							else
-							{
-								temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-							}
+							temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 							if (__instance.selectedFloor != null)
 							{
@@ -512,16 +429,7 @@ namespace BetterEditor.Core.Patches
 						}
 						else if (Input.GetKeyDown(KeyCode.RightArrow))
 						{
-							temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-							if (temporaryFloorsObj == null)
-							{
-								temporaryFloors = null;
-							}
-							else
-							{
-								temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-							}
+							temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 							if (__instance.selectedFloor != null)
 							{
@@ -561,16 +469,7 @@ namespace BetterEditor.Core.Patches
 
 									for (int k = 1; k < __instance.clipboardCharsEvents.Count; k++)
 									{
-										temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-										if (temporaryFloorsObj == null)
-										{
-											temporaryFloors = null;
-										}
-										else
-										{
-											temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-										}
+										temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 										if (seqID3 + k >= temporaryFloors.Count)
 										{
@@ -595,16 +494,7 @@ namespace BetterEditor.Core.Patches
 					}
 					else if (Input.GetKeyDown(KeyCode.LeftArrow))
 					{
-						temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-						if (temporaryFloorsObj == null)
-						{
-							temporaryFloors = null;
-						}
-						else
-						{
-							temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-						}
+						temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 						if (__instance.selectedFloor != null && __instance.selectedFloor.seqID != 0)
 						{
@@ -634,16 +524,7 @@ namespace BetterEditor.Core.Patches
 					}
 					else if (Input.GetKeyDown(KeyCode.RightArrow))
 					{
-						temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-						if (temporaryFloorsObj == null)
-						{
-							temporaryFloors = null;
-						}
-						else
-						{
-							temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-						}
+						temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 						if (__instance.selectedFloor != null && __instance.selectedFloor.seqID != temporaryFloors.Count - 1)
 						{
@@ -822,16 +703,7 @@ namespace BetterEditor.Core.Patches
 					scnEditorPrivates.SetField("showFloorNums", !(bool)scnEditorPrivates.GetField("showFloorNums"));
 					__instance.RemakePath();
 
-					temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-					if (temporaryFloorsObj == null)
-					{
-						temporaryFloors = null;
-					}
-					else
-					{
-						temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-					}
+					temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 					if (num != -1)
 					{
@@ -877,16 +749,7 @@ namespace BetterEditor.Core.Patches
 				}
 				else if (Input.GetKeyDown(KeyCode.RightArrow))
 				{
-					temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-					if (temporaryFloorsObj == null)
-					{
-						temporaryFloors = null;
-					}
-					else
-					{
-						temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-					}
+					temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 					scnEditorPrivates.InvokeMethod("SelectFloor", new object[] {
 						temporaryFloors[temporaryFloors.Count() - 1], true
@@ -992,31 +855,10 @@ namespace BetterEditor.Core.Patches
 			__instance.floorButtonPrimaryCanvas.gameObject.SetActive(!flag);
 			__instance.buttonShift.SetEnabled(flag);
 
-			object temporaryEvtIndicatorObj = scnEditorPrivates.GetField("draggedEvIndicator");
-			EventIndicator temporaryEvtIndicator;
+			EventIndicator temporaryEvtIndicator = scnEditorPrivates.GetField<EventIndicator>("draggedEvIndicator");
 
-			if (temporaryEvtIndicatorObj == null)
-			{
-				temporaryEvtIndicator = null;
-			}
-			else
-			{
-				temporaryEvtIndicator = (EventIndicator)temporaryEvtIndicatorObj;
-			}
+			GameObject[] temporaryObjectsAtMouse = scnEditorPrivates.InvokeMethod<GameObject[]>("ObjectsAtMouse");
 
-			object temporaryObjectsAtMouseObj = scnEditorPrivates.InvokeMethod("ObjectsAtMouse");
-			GameObject[] temporaryObjectsAtMouse;
-
-			if (temporaryObjectsAtMouseObj == null)
-            {
-				temporaryObjectsAtMouse = null;
-            }
-			else
-            {
-				temporaryObjectsAtMouse = (GameObject[]) temporaryObjectsAtMouseObj;
-            }
-
-			object temporarySmartObjectSelectObj;
 			GameObject temporarySmartObjectSelect;
 
 			if (Input.GetMouseButtonUp(0))
@@ -1036,16 +878,7 @@ namespace BetterEditor.Core.Patches
 					}
 					if ((bool) scnEditorPrivates.GetField("isDraggingTiles"))
 					{
-						temporaryFloorsObj = scnEditorPrivates.GetProperty("floors");
-
-						if (temporaryFloorsObj == null)
-						{
-							temporaryFloors = null;
-						}
-						else
-						{
-							temporaryFloors = (List<scrFloor>)temporaryFloorsObj;
-						}
+						temporaryFloors = scnEditorPrivates.GetProperty<List<scrFloor>>("floors");
 
 						Vector3 zero = Vector3.zero;
 						if (!(bool) scnEditorPrivates.InvokeMethod("MultiSelectionIsEmpty"))
@@ -1139,16 +972,7 @@ namespace BetterEditor.Core.Patches
 
 				if (temporaryObjectsAtMouse != null)
                 {
-					temporarySmartObjectSelectObj = scnEditorPrivates.InvokeMethod("SmartObjectSelect", new object[] { true, false });
-
-					if (temporarySmartObjectSelectObj == null)
-					{
-						temporarySmartObjectSelect = null;
-					}
-					else
-					{
-						temporarySmartObjectSelect = (GameObject)temporarySmartObjectSelectObj;
-					}
+					temporarySmartObjectSelect = scnEditorPrivates.InvokeMethod<GameObject>("SmartObjectSelect", new object[] { true, false });
 				}
 				else
                 {
@@ -1203,7 +1027,6 @@ namespace BetterEditor.Core.Patches
 					__instance.ShowPropertyHelp(false, null, "", default(Vector2), null, null);
 				}
 
-				object temporaryfloorPositionsAtDragStartObj;
 				Dictionary<scrFloor, Vector3> temporaryfloorPositionsAtDragStart;
 
 				if (Input.GetMouseButtonDown(0))
@@ -1212,16 +1035,7 @@ namespace BetterEditor.Core.Patches
 
 					if (array != null)
                     {
-						temporarySmartObjectSelectObj = scnEditorPrivates.InvokeMethod("SmartObjectSelect", new object[] { true, true });
-
-						if (temporarySmartObjectSelectObj == null)
-						{
-							temporarySmartObjectSelect = null;
-						}
-						else
-						{
-							temporarySmartObjectSelect = (GameObject)temporarySmartObjectSelectObj;
-						}
+						temporarySmartObjectSelect = scnEditorPrivates.InvokeMethod<GameObject>("SmartObjectSelect", new object[] { true, true });
 					}
 					else
                     {
@@ -1246,16 +1060,7 @@ namespace BetterEditor.Core.Patches
 					}
 					if ((bool) scnEditorPrivates.GetField("isDraggingTiles"))
 					{
-						temporaryfloorPositionsAtDragStartObj = scnEditorPrivates.GetField("floorPositionsAtDragStart");
-
-						if (temporaryfloorPositionsAtDragStartObj == null)
-                        {
-							temporaryfloorPositionsAtDragStart = null;
-						}
-						else
-                        {
-							temporaryfloorPositionsAtDragStart = (Dictionary<scrFloor, Vector3>) temporaryfloorPositionsAtDragStartObj;
-						}
+						temporaryfloorPositionsAtDragStart = scnEditorPrivates.GetField<Dictionary<scrFloor, Vector3>>("floorPositionsAtDragStart");
 
 						Dictionary<scrFloor, Vector3> floorPositionsAtDragStart = temporaryfloorPositionsAtDragStart;
 						floorPositionsAtDragStart.Clear();
@@ -1320,32 +1125,13 @@ namespace BetterEditor.Core.Patches
 				}
 				else if (Input.GetMouseButton(0))
 				{
-					object temporaryVectorObj;
-					List<Vector3> temporaryVectorList = new List<Vector3>();
+					Vector3 temporaryVector = new Vector3();
 
-					temporaryVectorObj = scnEditorPrivates.GetField("mousePosition0");
-					if (temporaryVectorObj == null)
-                    {
-						temporaryVectorList.Add(null);
-                    }
-					else
-                    {
-						temporaryVectorList.Add((Vector3)temporaryVectorObj);
-                    }
+					temporaryVector = scnEditorPrivates.GetField<Vector3>("mousePosition0");
 
-					object temporaryCameraObj = scnEditorPrivates.GetField("camera");
-					Camera temporaryCamera;
+					Camera temporaryCamera = scnEditorPrivates.GetField<Camera>("camera");
 
-					if (temporaryCameraObj == null)
-					{
-						temporaryCamera = null;
-					}
-					else
-					{
-						temporaryCamera = (Camera)temporaryCameraObj;
-					}
-
-					Vector3 vector5 = (Input.mousePosition - temporaryVectorList.Last()) / Screen.height * temporaryCamera.orthographicSize * 2f;
+					Vector3 vector5 = (Input.mousePosition - temporaryVector) / Screen.height * temporaryCamera.orthographicSize * 2f;
 					Vector3 b5 = new Vector3(vector5.x, vector5.y);
 					Vector3 vector6 = Vector3.zero;
 					if (!(bool) scnEditorPrivates.GetField("cancelDrag"))
@@ -1354,17 +1140,9 @@ namespace BetterEditor.Core.Patches
 						{
 							if (!(bool) scnEditorPrivates.GetField("isDraggingTiles"))
 							{
-								temporaryVectorObj = scnEditorPrivates.GetField("cameraPositionAtDragStart");
-								if (temporaryVectorObj == null)
-								{
-									temporaryVectorList.Add(null);
-								}
-								else
-								{
-									temporaryVectorList.Add((Vector3)temporaryVectorObj);
-								}
+								temporaryVector = scnEditorPrivates.GetField<Vector3>("cameraPositionAtDragStart");
 
-								vector6 = temporaryVectorList[1] - b5;
+								vector6 = temporaryVector - b5;
 
 								temporaryCamera.transform.position = new Vector3(vector6.x, vector6.y, -10f);
 
@@ -1372,16 +1150,7 @@ namespace BetterEditor.Core.Patches
 							}
 							else
 							{
-								temporaryfloorPositionsAtDragStartObj = scnEditorPrivates.GetField("floorPositionsAtDragStart");
-
-								if (temporaryfloorPositionsAtDragStartObj == null)
-								{
-									temporaryfloorPositionsAtDragStart = null;
-								}
-								else
-								{
-									temporaryfloorPositionsAtDragStart = (Dictionary<scrFloor, Vector3>)temporaryfloorPositionsAtDragStartObj;
-								}
+								temporaryfloorPositionsAtDragStart = scnEditorPrivates.GetField<Dictionary<scrFloor, Vector3>>("floorPositionsAtDragStart");
 
 								if (!(bool) scnEditorPrivates.InvokeMethod("MultiSelectionIsEmpty"))
 								{
@@ -1405,17 +1174,9 @@ namespace BetterEditor.Core.Patches
 						}
 						else
 						{
-							temporaryVectorObj = scnEditorPrivates.GetField("evIndPosAtDragStart");
-							if (temporaryVectorObj == null)
-							{
-								temporaryVectorList.Add(null);
-							}
-							else
-							{
-								temporaryVectorList.Add((Vector3)temporaryVectorObj);
-							}
+							temporaryVector = scnEditorPrivates.GetField<Vector3>("evIndPosAtDragStart");
 
-							vector6 = temporaryVectorList.Last() + b5;
+							vector6 = temporaryVector + b5;
 							Vector3 vector9 = vector6 - temporaryEvtIndicator.gameObject.transform.position;
 							float num4 = Vector3.Angle(Vector3.up, vector9);
 							if (vector9.x < 0f)
@@ -1439,17 +1200,9 @@ namespace BetterEditor.Core.Patches
 						}
 					}
 				IL_217E:
-					temporaryVectorObj = scnEditorPrivates.GetField("cameraPositionAtDragStart");
-					if (temporaryVectorObj == null)
-					{
-						temporaryVectorList.Add(null);
-					}
-					else
-					{
-						temporaryVectorList.Add((Vector3)temporaryVectorObj);
-					}
+					temporaryVector = scnEditorPrivates.GetField<Vector3>("cameraPositionAtDragStart");
 
-					if (vector6 != temporaryVectorList.Last())
+					if (vector6 != temporaryVector)
 					{
 						scnEditorPrivates.SetField("dragging", true);
 						return false;

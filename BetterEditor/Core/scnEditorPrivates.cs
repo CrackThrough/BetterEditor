@@ -133,7 +133,9 @@ namespace BetterEditor.Core
             // ah i didn't put it anywhere, i was just checking if it would compile
             // let's move it to BetterEditor.Init()
             TestStruct ts = GetField<TestStruct>("asdf");
+            bool b = GetField<bool>("asdf");
             BetterEditor.Logger.Log(ts.ToString()); // this? did you put Testing() on Startup or BetterEditor.Init() ? do I need to compile and run this? it should compile though
+            BetterEditor.Logger.Log(b.ToString());
         }
     }
 }
