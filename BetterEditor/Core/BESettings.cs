@@ -63,6 +63,11 @@ namespace BetterEditor.Core
                     return (BESettings) s.Deserialize(sr);
                 }
             }
+            catch (FileNotFoundException e)
+            {
+                BetterEditor.Logger.Log($"No file found for the type '{stgType.Name}'. Creating a new file...");
+                Save((BESettings) Activator.CreateInstance(stgType), stgType);
+            }
             catch (Exception e)
             {
                 BetterEditor.Logger.Log($"Settings loading failed for the type '{stgType.Name}'.");
