@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="BEMainSettings.cs" />
     <Compile Include="BetterEditor.cs" />
+    <Compile Include="Commands\Auto.cs" />
     <Compile Include="Commands\DoubleTile.cs" />
     <Compile Include="Commands\Nogari.cs" />
     <Compile Include="Commands\Play.cs" />
     <Compile Include="Commands\Page.cs" />
+    <Compile Include="Commands\Save.cs" />
     <Compile Include="Commands\Test.cs" />
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Core\Attributes\CommandInfo.cs" />
