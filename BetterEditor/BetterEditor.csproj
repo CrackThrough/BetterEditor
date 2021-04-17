@@ -50,8 +50,10 @@
     <Compile Include="Commands\Nogari.cs" />
     <Compile Include="Commands\Play.cs" />
     <Compile Include="Commands\Page.cs" />
+    <Compile Include="Commands\Redo.cs" />
     <Compile Include="Commands\Test.cs" />
     <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Commands\Undo.cs" />
     <Compile Include="Core\Attributes\CommandInfo.cs" />
     <Compile Include="Core\BECommand.cs" />
     <Compile Include="Core\BEKeybind.cs" />
