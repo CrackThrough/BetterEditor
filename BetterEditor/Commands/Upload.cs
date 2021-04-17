@@ -8,6 +8,9 @@ namespace BetterEditor.Commands
 	{
 		public override void Execute(scnEditor instance, string[] args)
 		{
+			if (instance.publishWindow.windowContainer.activeSelf)
+				return;
+
 			instance.publishWindow.windowContainer.SetActive(true);
 			instance.publishWindow.Init();
 			scnEditorPrivates.InvokeMethod("ShowEventPicker", new object[] { false });
